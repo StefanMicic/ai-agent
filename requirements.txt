@@ -1,0 +1,6 @@
+openai==1.68.2
+python-dotenv==1.0.1
+boto3==1.37.18
+matplotlib==3.10.1
+pandas==2.2.3
+numpy==2.2.4
