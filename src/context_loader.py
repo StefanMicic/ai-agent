@@ -27,7 +27,8 @@ class ContextLoader:
         content: List[str] = []
         for file_path in file_paths:
             with open(file_path, "r", encoding="utf-8") as file:
-                content.append(file.read())
+                file_name = file_path.split("/")[-1]
+                content.append(file_name + "\n\n" + file.read() + "\n\n")
         return "\n".join(content)
 
     def get_context(self, file_names: List[str]) -> str:
