@@ -2,11 +2,14 @@ import os
 import boto3
 from dotenv import load_dotenv
 import json
+from src.base_llm import BaseLLM
 from src.logging_config import logger
+from src.prompts import SYSTEM_PROMPT, CONTEXT_PROMPT, SYSTEM_PROMPT_PLOT, CONTEXT_PROMPT_PLOT, SYSTEM_PROMPT_INTENT, CONTEXT_PROMPT_INTENT
+import pandas as pd
 
 load_dotenv()
 
-class BedrockLlamaLLM:
+class BedrockLlamaLLM(BaseLLM):
     def __init__(self, model_name: str = "meta.llama3-8b-instruct-v1:0") -> None:
         """
         Initializes the LLM class with AWS Bedrock using credentials from environment variables.
@@ -21,39 +24,25 @@ class BedrockLlamaLLM:
             aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
             aws_session_token=os.getenv("AWS_SESSION_TOKEN")
         )
-        self.model_name = model_name
+        self.model_name: str = model_name
     
-    def get_template_ida_answering(self, context: str, question: str):
-        system = (
-            "You are a helpful AI assistant that provides data-driven business insights and strategic "
-            "recommendations. Your responses should be concise, actionable, and aligned with the given business context. "
-            "Prioritize retention strategies, proactive outreach, and customer engagement improvements based on available data. "
-            "When answering questions, ensure that responses stay relevant to the given business context and avoid speculative or unrelated topics."
-        )
-        return f"{system}\n\nGiven the following context, answer the user's question:\n{context}\n\nUser Question: {question}"
+    def generate_answer(self, question: str, question_type: str, context: str = "", max_tokens: int = 100) -> str:
+        """
+        Generates an answer to a given question based on the question type using the AWS Bedrock Llama model.
 
-    def get_template_sales_answering(self, context: str, question: str):
-        system = (
-            "You are an AI assistant specializing in sales strategy and customer engagement. Your responses should provide "
-            "practical sales techniques, lead conversion insights, and value-based selling approaches. Ensure that answers align "
-            "with best practices in sales, customer retention, and revenue growth."
-        )
-        return f"{system}\n\nGiven the following context, answer the user's question:\n{context}\n\nUser Question: {question}"
-    
-    def get_template_company_answering(self, context: str, question: str):
-        system = (
-            "You are an AI assistant providing company insights, mission alignment, and strategic recommendations. "
-            "Ensure responses reflect the company's core values, vision, and operational strengths while addressing user queries."
-        )
-        return f"{system}\n\nGiven the following context, answer the user's question:\n{context}\n\nUser Question: {question}"
-    
-    def generate_answer(self, type: str, question: str, question_type: str, context: str = "", max_tokens: int = 100) -> str:
-        if type == "ida":
-            prompt = self.get_template_ida_answering(context, question)
-        elif type == "sales":
-            prompt = self.get_template_sales_answering(context, question)
-        elif type == "company":
-            prompt = self.get_template_company_answering(context, question)
+        Args:
+            question (str): The question for which the answer is to be generated.
+            question_type (str): The type of the question, which determines the prompt format.
+            context (str, optional): The context to be used in the prompt. Default is an empty string.
+            max_tokens (int, optional): The maximum number of tokens for the generated answer. Default is 100.
+
+        Returns:
+            str: The generated answer.
+        """
+        if question_type == "general":
+            prompt = SYSTEM_PROMPT + "\n\n" + CONTEXT_PROMPT.format(context=context, question=question)
+        elif question_type == "intent":
+            prompt = SYSTEM_PROMPT_INTENT + "\n\n" + CONTEXT_PROMPT_INTENT.format(question=question)
         else:
             return "Could not provide answer."
         
@@ -69,7 +58,6 @@ class BedrockLlamaLLM:
         }
 
         request = json.dumps(native_request)
-
         response = self.client.invoke_model(modelId=self.model_name, body=request)
         model_response = json.loads(response["body"].read())
 
@@ -77,26 +65,29 @@ class BedrockLlamaLLM:
         logger.info("Bedrock Llama answer retrieved.")
         return response_text
     
-    def generate_plot_creation_code(self, user_question: str, df, df_description) -> str:
-        system_message = (
-            "Act as a data scientist and Python programmer. Write code that will solve my problem.\n"
-            f"I have a table with {len(df)} rows and {len(df.columns)} columns.\n"
-            f"The description of the table and columns is as follows: {df_description}.\n"
-            "The columns and their types are as follows:\n"
-        )
+    def generate_plot_creation_code(self, user_question: str, df: pd.DataFrame, df_description: str) -> str:
+        """
+        Generates code for creating a plot based on the user's question and the DataFrame description using the AWS Bedrock Llama model.
+
+        Args:
+            user_question (str): The question asked by the user.
+            df (pd.DataFrame): The DataFrame containing the data to be visualized.
+            df_description (str): A description of the DataFrame and its contents.
+
+        Returns:
+            str: The generated code for creating a plot.
+        """
+        rows_num: int = len(df)
+        cols_num: int = len(df.columns)
+        cols_description: str = ""
         for col in df.columns:
             col_type = df.dtypes[col]
-            system_message += f"{col} ({col_type})\n"
+            cols_description += f"{col} ({col_type})\n"
 
-        prompt_problem = (
-            "Solve the following problem:\n"
-            "Create a plot in Python with matplotlib package and save it as image named img.png at path ../graphs that fulfills this request:\n"
-            f"{user_question}\n\n"
-            "While writing the code, please follow these guidelines:\n"
-            "1. The answer must be without explanations or comments.\n"
-            "2. Do not import additional libraries.\n"
-            "3. The table is stored in the variable df.\n"
-        )
+        system_message: str = SYSTEM_PROMPT_PLOT.format(
+            rows_num=rows_num, cols_num=cols_num, df_description=df_description, cols_description=cols_description)
+        prompt_problem: str = CONTEXT_PROMPT_PLOT.format(user_question=user_question)
+
         formatted_prompt = f"""
             <|begin_of_text|><|start_header_id|>user<|end_header_id|>
             {system_message}\n\n{prompt_problem}

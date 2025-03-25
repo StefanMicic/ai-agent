@@ -1,0 +1,101 @@
+Sales Rep,Region,Lead Source,Leads Contacted,Leads Converted,Conversion Rate (%),Revenue Generated ($),Customer Satisfaction (1-5)
+Annete Black,North,Referral,142,29,15.28,5767.02,3
+Thomas Shaw,South,Email Campaign,72,35,14.09,11958.29,4
+Sarah Bradshaw,East,Webinar,90,30,18.82,14469.55,5
+John Doe,West,Social Media,104,24,23.88,11184.24,5
+Jane Smith,Central,Cold Call,83,13,14.66,9681.51,3
+Annete Black,North,Referral,119,50,10.5,5598.82,4
+Thomas Shaw,South,Email Campaign,148,27,14.61,8430.15,3
+Sarah Bradshaw,East,Webinar,147,28,35.55,17451.82,5
+John Doe,West,Social Media,118,28,12.2,17033.76,4
+Jane Smith,Central,Cold Call,92,13,10.12,12516.78,5
+Annete Black,North,Referral,136,38,13.67,5673.75,3
+Thomas Shaw,South,Email Campaign,131,17,28.01,11603.75,5
+Sarah Bradshaw,East,Webinar,88,21,26.41,14181.98,5
+John Doe,West,Social Media,105,30,19.96,5182.01,5
+Jane Smith,Central,Cold Call,68,14,13.89,11088.87,4
+Annete Black,North,Referral,51,30,37.09,5471.61,5
+Thomas Shaw,South,Email Campaign,130,50,39.93,8572.31,5
+Sarah Bradshaw,East,Webinar,115,22,16.8,10123.7,4
+John Doe,West,Social Media,143,15,12.6,11280.59,3
+Jane Smith,Central,Cold Call,50,27,24.28,15399.78,3
+Annete Black,North,Referral,90,26,19.33,6241.58,4
+Thomas Shaw,South,Email Campaign,67,27,25.21,12717.96,3
+Sarah Bradshaw,East,Webinar,145,32,19.63,15764.0,3
+John Doe,West,Social Media,88,25,28.04,16861.76,3
+Jane Smith,Central,Cold Call,91,44,22.04,9231.5,5
+Annete Black,North,Referral,88,15,36.68,11588.0,5
+Thomas Shaw,South,Email Campaign,96,40,26.97,19378.63,5
+Sarah Bradshaw,East,Webinar,64,34,36.63,14648.6,3
+John Doe,West,Social Media,145,11,29.22,16270.03,3
+Jane Smith,Central,Cold Call,148,44,21.13,10746.31,3
+Annete Black,North,Referral,76,42,29.88,9084.91,4
+Thomas Shaw,South,Email Campaign,149,21,39.42,13186.2,5
+Sarah Bradshaw,East,Webinar,127,27,39.61,16220.43,5
+John Doe,West,Social Media,86,31,30.38,15750.56,3
+Jane Smith,Central,Cold Call,128,27,24.63,19676.33,5
+Annete Black,North,Referral,69,42,14.68,15720.39,5
+Thomas Shaw,South,Email Campaign,121,29,23.83,6860.56,4
+Sarah Bradshaw,East,Webinar,88,42,30.4,11143.03,5
+John Doe,West,Social Media,70,16,15.19,10948.09,4
+Jane Smith,Central,Cold Call,143,24,29.96,9646.92,5
+Annete Black,North,Referral,71,17,14.69,7506.91,4
+Thomas Shaw,South,Email Campaign,110,12,10.31,16643.88,4
+Sarah Bradshaw,East,Webinar,134,43,36.02,16099.2,3
+John Doe,West,Social Media,136,18,16.18,19071.81,3
+Jane Smith,Central,Cold Call,146,30,31.22,13936.53,5
+Annete Black,North,Referral,134,20,22.73,10046.52,5
+Thomas Shaw,South,Email Campaign,141,11,24.13,15277.89,4
+Sarah Bradshaw,East,Webinar,76,16,10.38,8462.63,3
+John Doe,West,Social Media,59,43,14.88,15639.65,3
+Jane Smith,Central,Cold Call,105,17,35.39,8669.12,3
+Annete Black,North,Referral,60,19,18.51,18230.6,5
+Thomas Shaw,South,Email Campaign,60,32,19.05,7004.72,4
+Sarah Bradshaw,East,Webinar,112,21,34.43,16487.37,3
+John Doe,West,Social Media,118,20,26.57,16038.97,5
+Jane Smith,Central,Cold Call,124,46,38.26,12904.63,3
+Annete Black,North,Referral,102,34,39.51,12234.97,4
+Thomas Shaw,South,Email Campaign,100,42,25.84,11016.34,4
+Sarah Bradshaw,East,Webinar,66,42,35.01,13330.49,4
+John Doe,West,Social Media,88,27,28.68,19163.53,4
+Jane Smith,Central,Cold Call,98,49,39.03,17471.96,4
+Annete Black,North,Referral,61,24,25.76,12737.9,3
+Thomas Shaw,South,Email Campaign,81,38,38.54,12111.78,5
+Sarah Bradshaw,East,Webinar,65,47,18.79,12493.85,4
+John Doe,West,Social Media,88,36,36.9,10668.38,4
+Jane Smith,Central,Cold Call,90,14,27.47,17863.85,5
+Annete Black,North,Referral,138,23,30.06,14276.44,4
+Thomas Shaw,South,Email Campaign,69,19,38.44,17257.35,3
+Sarah Bradshaw,East,Webinar,65,27,38.5,13534.26,3
+John Doe,West,Social Media,83,17,17.08,18194.25,3
+Jane Smith,Central,Cold Call,109,21,36.36,12197.82,3
+Annete Black,North,Referral,102,33,33.32,18468.02,3
+Thomas Shaw,South,Email Campaign,78,35,20.44,19985.94,5
+Sarah Bradshaw,East,Webinar,90,23,38.41,13470.41,5
+John Doe,West,Social Media,77,42,26.39,13571.34,3
+Jane Smith,Central,Cold Call,146,19,14.64,13541.57,5
+Annete Black,North,Referral,65,28,30.66,18841.14,4
+Thomas Shaw,South,Email Campaign,142,29,35.7,10463.08,4
+Sarah Bradshaw,East,Webinar,58,40,34.04,11406.97,3
+John Doe,West,Social Media,137,31,20.87,9103.85,4
+Jane Smith,Central,Cold Call,80,24,35.74,17556.42,3
+Annete Black,North,Referral,80,20,26.28,7960.37,3
+Thomas Shaw,South,Email Campaign,150,16,33.12,14967.45,3
+Sarah Bradshaw,East,Webinar,123,26,38.08,8763.26,5
+John Doe,West,Social Media,142,36,34.75,12155.36,4
+Jane Smith,Central,Cold Call,74,19,34.47,6320.93,3
+Annete Black,North,Referral,145,29,16.13,9192.64,4
+Thomas Shaw,South,Email Campaign,133,27,16.29,18748.05,4
+Sarah Bradshaw,East,Webinar,70,17,16.32,6614.96,5
+John Doe,West,Social Media,66,12,34.33,9221.23,4
+Jane Smith,Central,Cold Call,127,41,16.34,19913.18,4
+Annete Black,North,Referral,88,49,20.44,5895.1,5
+Thomas Shaw,South,Email Campaign,128,18,27.04,8473.7,4
+Sarah Bradshaw,East,Webinar,114,44,14.42,14381.07,4
+John Doe,West,Social Media,89,37,13.98,12857.24,5
+Jane Smith,Central,Cold Call,62,46,33.24,19797.53,4
+Annete Black,North,Referral,135,44,16.78,11493.28,4
+Thomas Shaw,South,Email Campaign,80,50,32.03,10201.14,4
+Sarah Bradshaw,East,Webinar,146,47,37.31,16072.9,3
+John Doe,West,Social Media,82,29,29.45,8061.54,3
+Jane Smith,Central,Cold Call,149,37,38.34,11542.0,4

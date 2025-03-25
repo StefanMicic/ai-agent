@@ -1,0 +1,24 @@
+**Insights:**
+- Renewal rates for mid-market segment have fallen by 20% over the past 90 days.
+- Expansion revenue in the mid-market segment has decreased by 15%.
+- Projected revenue from the mid-market segment may drop by up to 12% in the upcoming quarter.
+- Customer support satisfaction scores have declined by 18% in the last six months.
+- Churn rate among enterprise clients has increased by 10%.
+- A potential 14% drop in enterprise revenue is anticipated next quarter due to support issues.
+- Product adoption among new customers has slowed by 25% over the last quarter.
+- Engagement of new users in their first 60 days has fallen by 30%.
+- Conversion rates in sales have dropped by 22% over the past quarter.
+- Average sales cycle has increased by 10 days.
+
+**Direction:**
+- Implement proactive outreach to at-risk accounts to improve mid-market engagement.
+- Allocate additional resources to the customer support team and upskill current agents.
+- Reduce response times for support resolution, especially for enterprise accounts.
+- Launch a targeted onboarding initiative with personalized walkthroughs and follow-ups.
+- Enhance sales follow-up strategy using a structured multi-touch outreach approach and personalized demos.
+
+**Action:**
+- Task Annete Black, Thomas Shaw, and Sarah Brandshaw with focusing on proactive outreach to at-risk mid-market accounts.
+- Ensure that enterprise accounts receive a first-response resolution within 24 hours.
+- Design and implement a new onboarding program that includes multiple interactions within the first month.
+- Revise the sales process to include personalized interactions and demonstrations, aiming for more frequent engagement with prospects.
