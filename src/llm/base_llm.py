@@ -2,6 +2,20 @@ from abc import ABC, abstractmethod
 
 class BaseLLM(ABC):
     @abstractmethod
+    def load_chat_history(self):
+        """
+        Abstract method to load chat history.
+        """
+        pass
+
+    @abstractmethod
+    def save_chat_history(self):
+        """
+        Abstract method to save chat history.
+        """
+        pass
+
+    @abstractmethod
     def generate_answer(self, question: str, question_type: str, context: str = "", max_tokens: int = 100) -> str:
         """
         Abstract method to generate an answer based on a question and context.

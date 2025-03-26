@@ -1,0 +1,101 @@
+id,sport,team_or_individual,popularity,average_duration_minutes,origin_country
+1,Tennis,Individual,80,120,France
+2,MMA,Individual,45,25,USA
+3,Hockey,Team,60,60,Canada
+4,Football,Team,95,90,England
+5,Boxing,Individual,55,36,Greece
+6,Table Tennis,Individual,40,30,England
+7,Hockey,Team,60,60,Canada
+8,Basketball,Team,85,48,USA
+9,Baseball,Team,70,180,USA
+10,Table Tennis,Individual,40,30,England
+11,Baseball,Team,70,180,USA
+12,Basketball,Team,85,48,USA
+13,Swimming,Individual,65,30,Worldwide
+14,Cricket,Team,75,300,England
+15,Rugby,Team,50,80,England
+16,Badminton,Individual,45,50,India
+17,Table Tennis,Individual,40,30,England
+18,Wrestling,Individual,35,10,Ancient Greece
+19,Rugby,Team,50,80,England
+20,Hockey,Team,60,60,Canada
+21,Rugby,Team,50,80,England
+22,Rugby,Team,50,80,England
+23,Hockey,Team,60,60,Canada
+24,Basketball,Team,85,48,USA
+25,Swimming,Individual,65,30,Worldwide
+26,Swimming,Individual,65,30,Worldwide
+27,MMA,Individual,45,25,USA
+28,Tennis,Individual,80,120,France
+29,Football,Team,95,90,England
+30,Basketball,Team,85,48,USA
+31,Cricket,Team,75,300,England
+32,MMA,Individual,45,25,USA
+33,Hockey,Team,60,60,Canada
+34,Cricket,Team,75,300,England
+35,Golf,Individual,60,240,Scotland
+36,Football,Team,95,90,England
+37,MMA,Individual,45,25,USA
+38,Table Tennis,Individual,40,30,England
+39,MMA,Individual,45,25,USA
+40,Football,Team,95,90,England
+41,Tennis,Individual,80,120,France
+42,Cycling,Individual,50,240,France
+43,Baseball,Team,70,180,USA
+44,Basketball,Team,85,48,USA
+45,Cricket,Team,75,300,England
+46,Rugby,Team,50,80,England
+47,Rugby,Team,50,80,England
+48,Rugby,Team,50,80,England
+49,Boxing,Individual,55,36,Greece
+50,Swimming,Individual,65,30,Worldwide
+51,Golf,Individual,60,240,Scotland
+52,Hockey,Team,60,60,Canada
+53,Cycling,Individual,50,240,France
+54,Cricket,Team,75,300,England
+55,Cycling,Individual,50,240,France
+56,Badminton,Individual,45,50,India
+57,Cricket,Team,75,300,England
+58,Badminton,Individual,45,50,India
+59,Table Tennis,Individual,40,30,England
+60,Boxing,Individual,55,36,Greece
+61,Cricket,Team,75,300,England
+62,Hockey,Team,60,60,Canada
+63,Baseball,Team,70,180,USA
+64,Badminton,Individual,45,50,India
+65,Cycling,Individual,50,240,France
+66,Tennis,Individual,80,120,France
+67,Hockey,Team,60,60,Canada
+68,Wrestling,Individual,35,10,Ancient Greece
+69,Wrestling,Individual,35,10,Ancient Greece
+70,Hockey,Team,60,60,Canada
+71,Football,Team,95,90,England
+72,MMA,Individual,45,25,USA
+73,Baseball,Team,70,180,USA
+74,Cycling,Individual,50,240,France
+75,Badminton,Individual,45,50,India
+76,Tennis,Individual,80,120,France
+77,Football,Team,95,90,England
+78,Golf,Individual,60,240,Scotland
+79,Boxing,Individual,55,36,Greece
+80,Boxing,Individual,55,36,Greece
+81,Tennis,Individual,80,120,France
+82,Badminton,Individual,45,50,India
+83,Rugby,Team,50,80,England
+84,Football,Team,95,90,England
+85,Table Tennis,Individual,40,30,England
+86,Hockey,Team,60,60,Canada
+87,Baseball,Team,70,180,USA
+88,Basketball,Team,85,48,USA
+89,Football,Team,95,90,England
+90,Golf,Individual,60,240,Scotland
+91,Table Tennis,Individual,40,30,England
+92,Basketball,Team,85,48,USA
+93,Cricket,Team,75,300,England
+94,Rugby,Team,50,80,England
+95,Table Tennis,Individual,40,30,England
+96,Swimming,Individual,65,30,Worldwide
+97,Basketball,Team,85,48,USA
+98,Cycling,Individual,50,240,France
+99,Swimming,Individual,65,30,Worldwide
+100,Cricket,Team,75,300,England

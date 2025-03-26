@@ -1,10 +1,12 @@
 import os
+import json
 from openai import OpenAI
-from dotenv import load_dotenv
-from src.base_llm import BaseLLM
-from src.logging_config import logger
-from src.prompts import SYSTEM_PROMPT, CONTEXT_PROMPT, SYSTEM_PROMPT_PLOT, CONTEXT_PROMPT_PLOT, SYSTEM_PROMPT_INTENT, CONTEXT_PROMPT_INTENT
 import pandas as pd
+from src.api.constants import CHAT_HISTORY_DIR
+from src.llm.base_llm import BaseLLM
+from src.config.logging_config import logger
+from src.prompts.prompts import SYSTEM_PROMPT, CONTEXT_PROMPT, SYSTEM_PROMPT_PLOT, CONTEXT_PROMPT_PLOT, SYSTEM_PROMPT_INTENT, CONTEXT_PROMPT_INTENT, SYSTEM_PROMPT_CSV_SELECTION, CONTEXT_PROMPT_CSV_SELECTION
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -18,6 +20,27 @@ class OpenaiLLM(BaseLLM):
         """
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         self.model_name: str = model_name
+        self.history_file = os.path.join(CHAT_HISTORY_DIR, "openai.json")
+        self.chat_history = self.load_chat_history()
+
+    def load_chat_history(self):
+        """Loads chat history from a JSON file."""
+        if not os.path.exists(CHAT_HISTORY_DIR):
+            os.makedirs(CHAT_HISTORY_DIR)
+        
+        if os.path.exists(self.history_file):
+            with open(self.history_file, "r", encoding="utf-8") as file:
+                try:
+                    return json.load(file)
+                except json.JSONDecodeError:
+                    logger.warning(f"Invalid JSON format in {self.history_file}, resetting chat history.")
+                    return []
+        return []
+
+    def save_chat_history(self):
+        """Saves chat history to a JSON file."""
+        with open(self.history_file, "w", encoding="utf-8") as file:
+            json.dump(self.chat_history, file, ensure_ascii=False, indent=4)
     
     def generate_answer(self, question: str, question_type: str, context: str = "", max_tokens: int = 100) -> str:
         """
@@ -32,6 +55,7 @@ class OpenaiLLM(BaseLLM):
         Returns:
             str: The generated answer.
         """
+        self.chat_history = self.load_chat_history()
         if question_type == "general":
             system = SYSTEM_PROMPT
             prompt = CONTEXT_PROMPT.format(context=context, question=question)
@@ -42,16 +66,10 @@ class OpenaiLLM(BaseLLM):
             return "Could not provide answer."
         
         logger.info(f"Getting Openai LLM answer for type {question_type}...")
-        messages = [
-            {
-                "role": "system",
-                "content": system
-            },
-            {
-                "role": "user", 
-                "content": prompt
-            },
-        ]
+        messages = [{"role": "system", "content": system}]
+        if question_type != "intent":
+            messages += self.chat_history[-10:]
+        messages.append({"role": "user", "content": prompt})
         
         chat_completion = self.client.chat.completions.create(
             messages=messages,
@@ -61,6 +79,11 @@ class OpenaiLLM(BaseLLM):
         )
         answer = chat_completion.choices[0].message.content
         logger.info(f"Openai LLM answer retrieved.")
+        if question_type == "intent":
+            return answer
+        self.chat_history.append({"role": "user", "content": question})
+        self.chat_history.append({"role": "assistant", "content": answer})
+        self.save_chat_history()
         return answer
     
     def generate_plot_creation_code(self, user_question: str, df: pd.DataFrame, df_description: str) -> str:
@@ -91,6 +114,30 @@ class OpenaiLLM(BaseLLM):
             {"role": "user", "content": prompt_problem},
         ]
 
+        chat_completion = self.client.chat.completions.create(
+            messages=messages,
+            model=self.model_name,
+        )
+        return chat_completion.choices[0].message.content.strip()
+    
+    def select_relevant_csv_file(self, file_descriptions: list, user_question: str) -> str:
+        """
+        Selects the most relevant CSV file from a list based on the user's question.
+
+        Args:
+            file_list (list): A list of tuples, where each tuple contains a file name and its description.
+            user_question (str): The question asked by the user.
+
+        Returns:
+            str: The filename of the most relevant CSV file, or "No relevant file found" if none match.
+        """
+        system_message: str = SYSTEM_PROMPT_CSV_SELECTION
+        prompt_problem: str = CONTEXT_PROMPT_CSV_SELECTION.format(file_descriptions=file_descriptions, user_question=user_question)
+        messages = [
+            {"role": "system", "content": system_message},
+            {"role": "user", "content": prompt_problem},
+        ]
+        
         chat_completion = self.client.chat.completions.create(
             messages=messages,
             model=self.model_name,

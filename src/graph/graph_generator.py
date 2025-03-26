@@ -2,9 +2,9 @@ import pandas as pd
 import numpy as np
 from typing import Any
 import matplotlib.pyplot as plt
-from src.openai_llm import OpenaiLLM
-from src.bedrock_llm import BedrockLlamaLLM
-from src.logging_config import logger
+from src.llm.openai_llm import OpenaiLLM
+from src.llm.bedrock_llm import BedrockLlamaLLM
+from src.config.logging_config import logger
 
 class GraphGenerator:
     def __init__(self, csv_file: str, description_file: str, llm_type: str, retry_limit: int = 3) -> None:

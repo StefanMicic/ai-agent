@@ -1,18 +1,19 @@
 import os
 from typing import List
-from src.logging_config import logger
 
 class ContextLoader:
-    def __init__(self, general_answering_data_directory: str, ida_data_directory: str) -> None:
+    def __init__(self, general_answering_data_directory: str, ida_data_directory: str, graph_data_directory: str) -> None:
         """
         Initialize the context loader with directories containing categorized files.
 
         Args:
             general_answering_data_directory (str): Path to the folder containing files for general answering.
             ida_data_directory (str): Path to the folder containing files for insight, direction, action answering.
+            graph_data_directory (str): graph_data_directory
         """
         self.general_answering_data_directory: str = general_answering_data_directory
         self.ida_data_directory: str = ida_data_directory
+        self.graph_data_directory: str = graph_data_directory
 
     def _load_txt_files_content(self, file_paths: List[str]) -> str:
         """
@@ -52,3 +53,14 @@ class ContextLoader:
                 file_paths.append(self.general_answering_data_directory + "/" + fn + ".txt")
         context: str = self._load_txt_files_content(file_paths)
         return context
+    
+    def get_graph_context(self):
+        """
+        Retrieve the context for graph generation.
+        """
+        filenames = []
+        for fn in os.listdir(self.graph_data_directory):
+            if fn.endswith("txt"):
+                filenames.append(self.graph_data_directory + "/" + fn)
+
+        return self._load_txt_files_content(file_paths=filenames)

@@ -1,15 +1,15 @@
-from src.logging_config import logger
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 import uvicorn
 from typing import List
 from pydantic import BaseModel
 from dotenv import load_dotenv
-from src.context_loader import ContextLoader
-from src.logging_config import logger
-from src.openai_llm import OpenaiLLM
-from src.bedrock_llm import BedrockLlamaLLM
-from src.graph_generator import GraphGenerator
+from src.context.context_loader import ContextLoader
+from src.config.logging_config import logger
+from src.llm.openai_llm import OpenaiLLM
+from src.llm.bedrock_llm import BedrockLlamaLLM
+from src.graph.graph_generator import GraphGenerator
+from src.api.constants import GRAPH_IMAGE_PATH, GENERAL_ANSWERING_DATA_DIR, IDA_DATA_DIR, GRAPH_DATA_DIR
 
 load_dotenv()
 
@@ -25,12 +25,7 @@ class IdaAnsweringRequest(BaseModel):
     ida_file_name: str
     llm_type: str = "openai"
 
-general_answering_data_directory = "./data/general_answering_data"
-ida_data_directory = "./data/insight_direction_action_data"
-df_path = "./data/graph_data/sales.csv"
-df_description_path = "./data/graph_data/sales_csv_description.txt"
-
-context_loader = ContextLoader(general_answering_data_directory=general_answering_data_directory, ida_data_directory=ida_data_directory)
+context_loader = ContextLoader(general_answering_data_directory=GENERAL_ANSWERING_DATA_DIR, ida_data_directory=IDA_DATA_DIR, graph_data_directory=GRAPH_DATA_DIR)
 logger.info("ContextLoader initialized.")
 
 openai_llm = OpenaiLLM()
@@ -50,19 +45,6 @@ async def general_answering(request: GeneralAnsweringRequest):
         logger.info(f"Received collections_names: {collections_names}...")
         llm_type = request.llm_type
         logger.info(f"Received llm_type: {llm_type}...")
-
-        if not question:
-            return {
-                'answer': "Please provide question!"
-            }
-        if not collections_names:
-            return {
-                'answer': "Please provide collections_names!"
-            } 
-        if not llm_type:
-            return {
-                'answer': "Please provide llm_type!"
-            }
 
         if llm_type == "openai":
             llm = openai_llm
@@ -89,9 +71,14 @@ async def general_answering(request: GeneralAnsweringRequest):
                 'answer': answer
             }
         elif intent == "2":
-            graph_generator = GraphGenerator(csv_file=df_path, description_file=df_description_path, llm_type=llm_type)
+            file_descriptions = context_loader.get_graph_context()
+            found_filename = llm.select_relevant_csv_file(file_descriptions=file_descriptions, user_question=question)
+            logger.info(f"Found graph filename: {found_filename}")
+            csv_file = GRAPH_DATA_DIR + "/" + found_filename.split("_")[0] + ".csv"
+            description_file = GRAPH_DATA_DIR + "/" + found_filename
+            graph_generator = GraphGenerator(csv_file=csv_file, description_file=description_file, llm_type=llm_type)
             graph_generator.generate_plot(plot_question=question)
-            return FileResponse("./graphs/img.png", media_type="image/png")
+            return FileResponse(GRAPH_IMAGE_PATH, media_type="image/png")
         elif intent == "3":
             return {
                 'answer': "I will create task you requested!"

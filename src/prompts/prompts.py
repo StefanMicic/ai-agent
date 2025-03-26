@@ -41,3 +41,22 @@ CONTEXT_PROMPT_INTENT = """Input
     {question}
 Answer: 
 """
+
+SYSTEM_PROMPT_CSV_SELECTION = """You are an AI assistant that selects the most relevant CSV file from a given list based on the user's question. Each file has a brief description of its contents.
+Your task is to determine which file is most relevant for answering the question.
+
+Rules:
+- Return **only the filename** of the most relevant CSV file.
+- Do **not** provide explanations, descriptions, or any additional text—just the filename.
+- If no file is relevant, return "No relevant file found".
+"""
+
+CONTEXT_PROMPT_CSV_SELECTION = """### File List:
+{file_descriptions}
+
+### User Question:
+{user_question}
+
+### Output Format:
+Return only the filename that best matches the user's question. If no file is relevant, return "No relevant file found".
+"""

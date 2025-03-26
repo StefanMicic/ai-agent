@@ -1,0 +1,5 @@
+GENERAL_ANSWERING_DATA_DIR = "./data/general_answering_data"
+IDA_DATA_DIR = "./data/insight_direction_action_data"
+GRAPH_DATA_DIR = "./data/graph_data"
+GRAPH_IMAGE_PATH = "./graphs/img.png"
+CHAT_HISTORY_DIR = "./chat_history"

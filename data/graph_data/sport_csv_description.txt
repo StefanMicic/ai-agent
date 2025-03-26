@@ -1,0 +1,17 @@
+Sports Dataset Description
+
+The dataset contains sports-related data covering various disciplines, their nature, popularity, and origins. It includes the following columns:
+
+    ID: A unique identifier for each record in the dataset. The values range from 1 to 100.
+
+    Sport: This column lists the names of different sports. There are 15 unique sports, including Football, Basketball, Tennis, Cricket, and more.
+
+    Team or Individual: This column indicates whether the sport is played as a team or individually. Sports such as Football and Basketball are categorized as "Team," while Tennis and Golf are classified as "Individual."
+
+    Popularity: This column represents the estimated global popularity of the sport on a scale from 1 to 100, with higher values indicating more widely followed sports.
+
+    Average Duration (Minutes): This column specifies the average duration of a match or event for the given sport, ranging from short durations (e.g., Wrestling - 10 minutes) to longer ones (e.g., Cricket - 300 minutes).
+
+    Origin Country: This column provides the country where the sport was originally developed or popularized. Examples include England for Football and Cricket, the USA for Basketball, and Scotland for Golf.
+
+This dataset can be used to analyze trends in sports popularity, game durations, and the prevalence of team vs. individual sports across different regions.
