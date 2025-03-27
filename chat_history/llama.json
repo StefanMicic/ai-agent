@@ -1,18 +1,10 @@
 [
     {
         "role": "user",
-        "content": "What is company?"
+        "content": "Write me all directions"
     },
     {
         "role": "assistant",
-        "content": ""
-    },
-    {
-        "role": "user",
-        "content": "Tell me about company?"
-    },
-    {
-        "role": "assistant",
-        "content": ""
+        "content": " Here are the directions mentioned in the given context:\n\n1. **Mid-Market Engagement Challenges:**\n    - Implement proactive outreach to at-risk accounts to improve mid-market engagement.\n    - Task Annete Black, Thomas Shaw, and Sarah Brandshaw with focusing on proactive outreach to at-risk mid-market accounts.\n    - Ensure that accounts receiving three or more proactive touchpoints per quarter tend to experience 25% higher retention and achieve 18% greater upsell potential.\n\n2. **Enterprise Customer Support Concern"
     }
 ]

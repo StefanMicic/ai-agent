@@ -172,3 +172,5 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+chat_history/llama.json
+chat_history/openai.json
