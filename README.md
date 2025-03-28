@@ -30,6 +30,16 @@ project_root/
 ├── README.md                # Project documentation
 ```
 
+## Insights, direction, action (IDA) creation
+
+To create Insights, direction, action txt file out of files with regular text use:
+
+```bash
+python create_ida.py
+```
+
+This script will go through data/general_answering_data folder and every .txt file will convert to this format using LLM and save it to data/insight_direction_action_data folder.
+
 ## Endpoints
 
 ### `POST /general_answering`
